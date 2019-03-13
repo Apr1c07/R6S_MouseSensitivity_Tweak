@@ -1,0 +1,15 @@
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.csprojAssemblyReference.cache
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Form1.resources
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Properties.Resources.resources
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.csproj.GenerateResource.cache
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.csproj.CoreCompileInputs.cache
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\bin\Debug\R6S_mouse_sensitivity.exe.config
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\bin\Debug\R6S_mouse_sensitivity.exe
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\bin\Debug\R6S_mouse_sensitivity.pdb
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.exe
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.pdb
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Form2.resources
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Form3.resources
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Form4.resources
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Form5.resources
+C:\Users\annin\source\repos\R6S_mouse_sensitivity\R6S_mouse_sensitivity\obj\Debug\R6S_mouse_sensitivity.Form6.resources

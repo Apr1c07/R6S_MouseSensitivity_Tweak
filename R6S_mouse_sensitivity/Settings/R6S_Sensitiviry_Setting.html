@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>マウス感度の計算式</title>
+</head>
+<body>
+
+    <h2 id="section">マウス感度の計算式</h2>
+<p>R6Sのマウス感度は、<br />
+<strong>（マウスのDPI）×（ゲーム内感度）×（MouseSensitivityMultiplierUnit）</strong><br />
+で決定されます。</p>
+<h2 id="mousesensitivitymultiplierunit">MouseSensitivityMultiplierUnitとは</h2>
+<p>（ゲーム内感度）×（MouseSensitivityMultiplierUnit）<br />
+はセットで考えます。デフォルトの設定は<br />
+　　・ゲーム内感度 ： 50<br />
+　　・MouseSensitivityMultiplierUnit : 0.020000<br />
+ですがこれらの積は、<br />
+　　<strong>50 × 0.020000 = 1</strong><br />
+となり、マウスのDPIがそのままゲーム内のマウス感度になります。<br />
+<br>
+もしも、ゲーム内感度を25にしたとすると、<br />
+　　<strong>25 × 0.020000 = 0.5</strong><br />
+となり、DPIの半分の値がゲーム内のマウス感度になります。</p>
+</body>
+</html>
