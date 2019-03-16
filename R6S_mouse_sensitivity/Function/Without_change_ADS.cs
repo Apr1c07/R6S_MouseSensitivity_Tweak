@@ -95,8 +95,8 @@ namespace R6S_mouse_sensitivity
 
         private void get_gamesettings() //GameSettings読み込み
         {
-            //var directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\My Games\\Rainbow Six - Siege";
-            var directory = Properties.Settings.Default.gamesettings_folder;
+            var directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\My Games\\Rainbow Six - Siege";
+           // var directory = Properties.Settings.Default.gamesettings_folder;
             string[] directoryCount = Directory.GetDirectories(directory, "*", SearchOption.TopDirectoryOnly);
 
             if (directoryCount.Length == 1)
@@ -114,7 +114,6 @@ namespace R6S_mouse_sensitivity
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 load_gamesetting = true;
-                button2.Enabled = true;
                 iniFileName = openFileDialog1.FileName;
 
                 StringBuilder MouseYawSensitivity = new StringBuilder(1024);　//x軸感度
@@ -655,7 +654,6 @@ namespace R6S_mouse_sensitivity
             if (textBox4.Text == "") { textBox4.BackColor = SystemColors.Window; }
 
             comboBox1.Enabled = false;
-            button2.Enabled = false;
             button3.Enabled = false;
         }
 
@@ -670,7 +668,6 @@ namespace R6S_mouse_sensitivity
         private void Load_Gametettings()
         {
             load_gamesetting = true;
-            button2.Enabled = true;
             iniFileName = Properties.Settings.Default.gamesettings_file;
 
             StringBuilder MouseYawSensitivity = new StringBuilder(1024); //x軸感度

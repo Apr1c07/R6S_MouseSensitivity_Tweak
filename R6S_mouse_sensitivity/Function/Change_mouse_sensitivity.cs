@@ -182,25 +182,15 @@ namespace R6S_mouse_sensitivity
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var directory = Properties.Settings.Default.gamesettings_folder;
-            string[] directoryCount = Directory.GetDirectories(directory, "*", SearchOption.TopDirectoryOnly);
-
-            if (directoryCount.Length == 1)
-            {
-                openFileDialog1.InitialDirectory = directoryCount[0];
-            }
-            else
-            {
-                openFileDialog1.InitialDirectory = directory;
-            }
-
+            var directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\My Games\\Rainbow Six - Siege";
+            //var directory = Properties.Settings.Default.gamesettings_folder;
+            openFileDialog1.InitialDirectory = directory;
             openFileDialog1.FileName = "GameSettings";
             openFileDialog1.Filter = "INI ファイル (.ini)|*.ini|all|*.*";
 
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 load_gamesetting = true;
-                button3.Enabled = true;
                 iniFileName = openFileDialog1.FileName;
 
                 StringBuilder MouseYawSensitivity = new StringBuilder(1024);　//x軸感度
@@ -254,7 +244,7 @@ namespace R6S_mouse_sensitivity
                 filename = iniFileName.Split('\\');
                 Array.Reverse(filename);
 
-                DialogResult result1 = MessageBox.Show("このデータを " + filename[1]+ " の"+ "\r\n"+"GameSettings.ini に上書きしますか？", "上書きの確認", MessageBoxButtons.YesNo);
+                DialogResult result1 = MessageBox.Show("このデータを " + filename[1] + " の" + "\r\n" + "GameSettings.ini に上書きしますか？", "上書きの確認", MessageBoxButtons.YesNo);
                 if (result1 == DialogResult.Yes)
                 {
                     if (Properties.Settings.Default.option_Back_Up == true)
@@ -489,10 +479,10 @@ namespace R6S_mouse_sensitivity
                                         Validation.IsDecimal(g_sens_y_temp) == false
                                         )
                                     {
-                                        if (dpi_x!= dpi_x_temp)
+                                        if (dpi_x != dpi_x_temp)
                                         {
                                             comboBox1.Items.Add(dpi_x_temp);
-                                        }                        
+                                        }
                                     }
                                 }
                             }
@@ -581,7 +571,7 @@ namespace R6S_mouse_sensitivity
                 else
                 {
                     comboBox1.Enabled = false;
-                    label40.Text="変更可能な選択肢がありません。";
+                    label40.Text = "変更可能な選択肢がありません。";
                 }
             }
             else
@@ -640,7 +630,6 @@ namespace R6S_mouse_sensitivity
 
             comboBox1.Enabled = false;
             button2.Enabled = false;
-            button3.Enabled = false;
         }
 
         private int GetPrecision1(decimal price)
@@ -1006,7 +995,6 @@ namespace R6S_mouse_sensitivity
         private void Load_Gametettings()
         {
             load_gamesetting = true;
-            button3.Enabled = true;
             iniFileName = Properties.Settings.Default.gamesettings_file;
 
             StringBuilder MouseYawSensitivity = new StringBuilder(1024); //x軸感度
@@ -1223,7 +1211,7 @@ namespace R6S_mouse_sensitivity
             var filename = System.IO.Path.GetFileName(iniFileName);
             //日付を取得
             var d = DateTime.Now.ToString("yyyyMMdd_HHmm-");
-            d = d + "DPI_X_" +label15.Text + "-DPI_Y_" + label16.Text + "-OS_" + label19.Text+"-";
+            d = d + "DPI_X_" + label15.Text + "-DPI_Y_" + label16.Text + "-OS_" + label19.Text + "-";
             //日付を先頭にしてバックアップファイルのパスを作る
             var buckupfilepath = string.Format(Properties.Settings.Default.gamesettings_bkup + @"\{0}{1}", d, filename);
             //ファイルをコピーしてバックアップ

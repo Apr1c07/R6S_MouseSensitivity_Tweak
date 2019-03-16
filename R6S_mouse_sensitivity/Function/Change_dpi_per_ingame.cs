@@ -108,7 +108,8 @@ namespace R6S_mouse_sensitivity
 
         private void get_gamesettings() //GameSettings読み込み
         {
-            var directory = Properties.Settings.Default.gamesettings_folder;
+            //var directory = Properties.Settings.Default.gamesettings_folder;
+            var directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\My Games\\Rainbow Six - Siege";
             string[] directoryCount = Directory.GetDirectories(directory, "*", SearchOption.TopDirectoryOnly);
 
             if (directoryCount.Length == 1)
