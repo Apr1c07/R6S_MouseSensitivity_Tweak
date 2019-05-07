@@ -1,4 +1,4 @@
-document.write("<p>UTF-8で記述された外部ファイル</p>");
+alert('読み込み成功');
 
 function onButtonClick() {
 　alert('JavaScriptのアラート');
