@@ -11,20 +11,20 @@ var dpi_val_min;
 var ItemList = new Array();
 
 function Cal(){
-  var dpi=Number(document.getElementById('DPI').value);
-  var x=Number(document.getElementById('x').value);
-  var y=Number(document.getElementById('y').value);
-  var ads =Number(document.getElementById('ADS').value);
-  var msmu=Number(document.getElementById('MSMU').value);
-  var xfa =Number(document.getElementById('XFA').value);
-  
+   dpi=Number(document.getElementById('DPI').value);
+   x=Number(document.getElementById('x').value);
+   y=Number(document.getElementById('y').value);
+   ads =Number(document.getElementById('ADS').value);
+   msmu=Number(document.getElementById('MSMU').value);
+   xfa =Number(document.getElementById('XFA').value);
+
   DPI_HIP = dpi*x*msmu;
-  DPI_ADS = (dpi * x * msmu) * ads * xfac;
+  DPI_ADS = (dpi * x * msmu) * ads * xfa;
   dpi_val_min = Math.trunc(DPI_HIP)-500;
   if (dpi_val_min <= 0) dpi_val_min = 1;
   var x_mag = x*msmu;
   
-  for(var DPI_HIP_temp = dpi_val_min;DPI_HIP_temp <= Math.Truncate(DPI_HIP) + 500; DPI_HIP_temp++){
+  for(var DPI_HIP_temp = dpi_val_min; DPI_HIP_temp <= Math.trunc(DPI_HIP) + 500; DPI_HIP_temp++){
     
     if (msmu_dpi_check(DPI_HIP_temp))
     {
@@ -34,8 +34,8 @@ function Cal(){
         var msmu_new;
         var ads_new;
         var xfac_new;
-        x_msmu_cal(out msmu_new, out x_new, DPI_HIP_temp);
-        ads_xfac_cal(out xfac_new, out ads_new, DPI_ADS / DPI_HIP_temp);
+        let{msmu_new, x_new} = x_msmu_cal(DPI_HIP_temp);
+        let{xfac_new, ads_new} = ads_xfac_cal(DPI_ADS / DPI_HIP_temp);
         ItemList.push(DPI_HIP_temp);
       }
     }
@@ -85,8 +85,6 @@ function msmu_dpi_check(temp_dpi) //変更可能かどうかだけを出す
   for (var i = 1; i <= 100; i++)
   {
     test = temp_dpi / dpi / i;
-    
-    
     if (test > 0 && getDecimalPointLength(test) <= 6 && test < 10)
     {
       test_bool = true;
