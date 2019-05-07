@@ -47,7 +47,6 @@ function Cal(){
         cell5.innerHTML = msmu_new.toFixed(6);
         cell6.innerHTML = xfa_new.toFixed(6);
       }
-
     }
   }
 }
@@ -132,8 +131,6 @@ function ads_xfac_cal(ads_mag_temp)
 
 var getDecimalPointLength = function(number) {
   var numbers = String(number).split('.'), result = 0;
-
   if (numbers[1]) result = numbers[1].length;
-
   return result;
 };
