@@ -11,53 +11,26 @@ var dpi_val_min;
 var ItemList = new Array();
 
 function Cal(){
-   dpi=Number(document.getElementById('DPI').value);
-   x=Number(document.getElementById('x').value);
-   y=Number(document.getElementById('y').value);
-   ads =Number(document.getElementById('ADS').value);
-   msmu=Number(document.getElementById('MSMU').value);
-   xfa =Number(document.getElementById('XFA').value);
+  dpi=Number(document.getElementById('DPI').value);
+  x=Number(document.getElementById('x').value);
+  y=Number(document.getElementById('y').value);
+  ads =Number(document.getElementById('ADS').value);
+  msmu=Number(document.getElementById('MSMU').value);
+  xfa =Number(document.getElementById('XFA').value);
 
   DPI_HIP = dpi*x*msmu;
   DPI_ADS = (dpi * x * msmu) * ads * xfa;
   dpi_val_min = Math.trunc(DPI_HIP)-500;
   if (dpi_val_min <= 0) dpi_val_min = 1;
   var x_mag = x*msmu;
-  
+
   for(var DPI_HIP_temp = dpi_val_min; DPI_HIP_temp <= Math.trunc(DPI_HIP) + 500; DPI_HIP_temp++){
-    
-    if (msmu_dpi_check(DPI_HIP_temp))
-    {
+    if(msmu_dpi_check(DPI_HIP_temp)){
       if (ads_xfac_check(DPI_ADS / DPI_HIP_temp))
       {
-        var x_new;
-        var msmu_new;
-        var ads_new;
-        var xfac_new;
         let{msmu_new, x_new} = x_msmu_cal(DPI_HIP_temp);
-        let{xfac_new, ads_new} = ads_xfac_cal(DPI_ADS / DPI_HIP_temp);
-        ItemList.push(DPI_HIP_temp);
-      }
-    }
-  }
-  create_low();
-}
+        let{xfa_new, ads_new} = ads_xfac_cal(DPI_ADS / DPI_HIP_temp);
 
-function create_low(){
-  for (var j = 0; j <= ItemList.length - 1; j++)
-  {
-    //comboBox1.SelectedIndex = j;
-    if (msmu_dpi_check(ItemList[j]))//仮のdpiが実現可能かどうか
-    {    
-      if (ads_xfac_check(DPI_ADS / dpi))//そのdpiの場合にxfacの設定が可能か
-      {
-        var x_new;
-        var msmu_new;
-        var ads_new;
-        var xfac_new;
-        let{msmu_new, x_new} = x_msmu_cal(dpi);
-        let{xfac_new, ads_new} = ads_xfac_cal(DPI_ADS / dpi);
-        
         var table = document.getElementById("ResTable");
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(-1);
@@ -66,14 +39,16 @@ function create_low(){
         var cell4 = row.insertCell(-1);
         var cell5 = row.insertCell(-1);
         var cell6 = row.insertCell(-1);
-        
+
         cell1.innerHTML = dpi * x_new * msmu_new;
-        cell2.innerHTML = dpi * x_new * msmu_new * ads_new * xfac_new;
+        //cell2.innerHTML = dpi * x_new * msmu_new * ads_new * xfa_new;
+        cell2.innerHTML = x_new;
         cell3.innerHTML = x_new;
         cell4.innerHTML = ads_new;
         cell5.innerHTML = msmu_new.toFixed(6);
-        cell6.innerHTML = xfac_new.toFixed(6);
+        cell6.innerHTML = xfa_new.toFixed(6);
       }
+
     }
   }
 }
@@ -100,7 +75,7 @@ function ads_xfac_check(ads_mag_temp) //変更可能かどうかだけを出す
   var test_bool = false;
   for (var i = 1; i <= 100; i++)
   {
-    test = ads_mag_temp / (Decimal)i;
+    test = ads_mag_temp / i;
     if (test > 0 && getDecimalPointLength(test) <= 6 && test < 10)
     {
       test_bool = true;
@@ -114,55 +89,52 @@ function x_msmu_cal(temp_dpi) //元々のxfacに近い値を計算
 {
   var test;//仮のmsmu
   var diff = 10000;
-  let re1 = 0;
-  let re2 = 0;
-  
-  for (int i = 1; i <= 100; i++)
+  let msmu_new = 0;
+  let x_new = 0;
+
+  for (var i = 1; i <= 100; i++)
   {
-    test = temp_dpi / (Decimal)dpi / (Decimal)i;
+    test = temp_dpi / dpi / i;
     if (test > 0 && getDecimalPointLength(test) <= 6 && test < 10)
     {
-      //MessageBox.Show(test.ToString());
       if (Math.abs(test - msmu) < diff)
       {
-        // MessageBox.Show("(test - msmu) < diff = (" + test + " - " + msmu + ") < " + diff + "   test = " + test + ", i = " + i);
         diff = Math.abs(test - msmu);
-        re1 = test; //msmu
-        re2 = i;　//ads
+        msmu_new = test; //msmu
+        x_new = i;　//ads
       }
     }
   }
-  return {re1,re2}
+  return {msmu_new, x_new}
 }
 
-var ads_xfac_cal(ads_mag_temp)
+function ads_xfac_cal(ads_mag_temp)
 {
   var test;
   var diff = 10000;
-  let re1 = 0;
-  let re2 = 0;
-  
-  for (int i = 1; i <= 100; i++)
+  let xfa_new = 0;
+  let ads_new = 0;
+
+  for (var i = 1; i <= 100; i++)
   {
-    test = ads_mag_temp / (Decimal)i;
+    test = ads_mag_temp / i;
     if (test > 0 && getDecimalPointLength(test) <= 6 && test < 10)
     {
-      if (Math.abs(test - xfac) < diff)
+      if (Math.abs(test - xfa) < diff)
       {
-        diff = Math.abs(test - xfac);
-        re1 = test;
-        re2 = i;
+        diff = Math.abs(test - xfa);
+        xfa_new = test;
+        ads_new = i;
       }
     }
   }
-  return {re1,re2}
+  return {xfa_new, ads_new}
 }
 
 var getDecimalPointLength = function(number) {
-    var numbers = String(number).split('.'), result = 0;
- 
-    if (numbers[1]) result = numbers[1].length;
- 
-    return result;
-};
+  var numbers = String(number).split('.'), result = 0;
 
+  if (numbers[1]) result = numbers[1].length;
+
+  return result;
+};
