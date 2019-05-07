@@ -11,6 +11,7 @@ var dpi_val_min;
 var ItemList = new Array();
 
 function Cal(){
+  alert('calling');
   dpi=Number(document.getElementById('DPI').value);
   x=Number(document.getElementById('x').value);
   y=Number(document.getElementById('y').value);
