@@ -26,11 +26,14 @@ function Cal(){
 
   for(var DPI_HIP_temp = dpi_val_min; DPI_HIP_temp <= Math.trunc(DPI_HIP) + 500; DPI_HIP_temp++){
     if(msmu_dpi_check(DPI_HIP_temp)){
+      alert('ok');
       if (ads_xfac_check(DPI_ADS / DPI_HIP_temp))
       {
+        alert('ok');
         let{msmu_new, x_new} = x_msmu_cal(DPI_HIP_temp);
+        alert('ok');
         let{xfa_new, ads_new} = ads_xfac_cal(DPI_ADS / DPI_HIP_temp);
-
+        alert('ok');
         var table = document.getElementById("ResTable");
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(-1);
