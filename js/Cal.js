@@ -17,7 +17,9 @@ function Cal(){
   ads =Number(document.getElementById('ADS').value);
   msmu=Number(document.getElementById('MSMU').value);
   xfa =Number(document.getElementById('XFA').value);
-
+  var table = document.getElementById("ResTable");
+  if(table.rows.length!=1)while( table.rows[ 1 ] ) table.deleteRow( 1 );
+  
   DPI_HIP = dpi*x*msmu;
   DPI_ADS = (dpi * x * msmu) * ads * xfa;
   dpi_val_min = Math.trunc(DPI_HIP)-500;
@@ -30,7 +32,7 @@ function Cal(){
       {
         let{msmu_new, x_new} = x_msmu_cal(DPI_HIP_temp);
         let{xfa_new, ads_new} = ads_xfac_cal(DPI_ADS / DPI_HIP_temp);
-        var table = document.getElementById("ResTable");
+
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(-1);
         var cell2 = row.insertCell(-1);
