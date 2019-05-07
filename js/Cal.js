@@ -1,3 +1,4 @@
+alert('input');
 var dpi;
 var x;
 var y;
