@@ -17,14 +17,32 @@ function Cal(){
   ads =Number(document.getElementById('ADS').value);
   msmu=Number(document.getElementById('MSMU').value);
   xfa =Number(document.getElementById('XFA').value);
-  var table = document.getElementById("ResTable");
-  if(table.rows.length!=1)while( table.rows[ 1 ] ) table.deleteRow( 1 );
-  
+  var restable = document.getElementById("ResTable");
+  var usertable = document.getElementById("UserSettingTable");
+  if(restable.rows.length!=1)while( restable.rows[ 1 ] ) restable.deleteRow( 1 );
+  if(usertable.rows.length!=1)while( usertable.rows[ 1 ] ) usertable.deleteRow( 1 );
   DPI_HIP = dpi*x*msmu;
   DPI_ADS = (dpi * x * msmu) * ads * xfa;
   dpi_val_min = Math.trunc(DPI_HIP)-500;
   if (dpi_val_min <= 0) dpi_val_min = 1;
   var x_mag = x*msmu;
+
+  var userrow = usertable.insertRow(-1);
+  var cell1 = userrow.insertCell(-1);
+  var cell2 = userrow.insertCell(-1);
+  var cell3 = userrow.insertCell(-1);
+  var cell4 = userrow.insertCell(-1);
+  var cell5 = userrow.insertCell(-1);
+  var cell6 = userrow.insertCell(-1);
+  var cell7 = userrow.insertCell(-1);
+
+  cell1.innerHTML = dpi * x * msmu;
+  cell2.innerHTML = dpi * y * msmu;
+  cell3.innerHTML = x;
+  cell4.innerHTML = y;
+  cell5.innerHTML = ads;
+  cell6.innerHTML = msmu.toFixed(6);
+  cell7.innerHTML = xfa.toFixed(6);
 
   for(var DPI_HIP_temp = dpi_val_min; DPI_HIP_temp <= Math.trunc(DPI_HIP) + 500; DPI_HIP_temp++){
     if(msmu_dpi_check(DPI_HIP_temp)){
@@ -32,22 +50,27 @@ function Cal(){
       {
         let{msmu_new, x_new} = x_msmu_cal(DPI_HIP_temp);
         let{xfa_new, ads_new} = ads_xfac_cal(DPI_ADS / DPI_HIP_temp);
+        var y_new=y*(x_new/x);
 
-        var row = table.insertRow(-1);
-        var cell1 = row.insertCell(-1);
-        var cell2 = row.insertCell(-1);
-        var cell3 = row.insertCell(-1);
-        var cell4 = row.insertCell(-1);
-        var cell5 = row.insertCell(-1);
-        var cell6 = row.insertCell(-1);
+        if(getDecimalPointLength(y_new)===0){
+          var row = restable.insertRow(-1);
+          var cell1 = row.insertCell(-1);
+          var cell2 = row.insertCell(-1);
+          var cell3 = row.insertCell(-1);
+          var cell4 = row.insertCell(-1);
+          var cell5 = row.insertCell(-1);
+          var cell6 = row.insertCell(-1);
+          var cell7 = row.insertCell(-1);
 
-        cell1.innerHTML = dpi * x_new * msmu_new;
-        //cell2.innerHTML = dpi * x_new * msmu_new * ads_new * xfa_new;
-        cell2.innerHTML = x_new;
-        cell3.innerHTML = x_new;
-        cell4.innerHTML = ads_new;
-        cell5.innerHTML = msmu_new.toFixed(6);
-        cell6.innerHTML = xfa_new.toFixed(6);
+          cell1.innerHTML = dpi * x_new * msmu_new;
+          cell2.innerHTML = dpi * y_new * msmu_new;
+          //cell2.innerHTML = dpi * x_new * msmu_new * ads_new * xfa_new;
+          cell3.innerHTML = x_new;
+          cell4.innerHTML = y_new;
+          cell5.innerHTML = ads_new;
+          cell6.innerHTML = msmu_new.toFixed(6);
+          cell7.innerHTML = xfa_new.toFixed(6);
+        }
       }
     }
   }
